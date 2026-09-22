@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>demo.karate</groupId>
+  <artifactId>karate-demo</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>karate-demo</name>
+  <url>http://maven.apache.org</url>
+ 
+<properties>
+    <!-- Java -->
+    <maven.compiler.release>21</maven.compiler.release>
+
+    <!-- Encoding -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Karate -->
+    <karate.version>2.1.2</karate.version>
+
+    <!-- JUnit 6 -->
+    <junit.version>5.10.1</junit.version>
+
+    <!-- Maven -->
+    <maven.surefire.version>3.5.3</maven.surefire.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.karatelabs</groupId>
+      <artifactId>karate-core</artifactId>
+      <version>${karate.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.15.0</version>
+
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+
+      <!-- JUnit 6 / Karate execution -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.version}</version>
+
+        <configuration>
+
+          <!-- UTF-8 -->
+          <systemPropertyVariables>
+            <file.encoding>${project.build.sourceEncoding}</file.encoding>
+          </systemPropertyVariables>
+
+          <!-- Don't redirect test output -->
+          <redirectTestOutputToFile>false</redirectTestOutputToFile>
+
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
